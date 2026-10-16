@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CIDR calculator</title>
+<noscript><style>#typed::before{content:"CIDR calculator"}</style></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1 aria-label="CIDR calculator"><span id="typed"></span><span class="caret" aria-hidden="true"></span></h1>
+  <p class="sub">Enter an IPv4 address and prefix length to see the masks, boundaries and host range of its subnet.</p>
+
+  <div class="sheet">
+    <section class="inputs" aria-label="Subnet input">
+      <div class="field">
+        <label for="ip">IPv4 address</label>
+        <input id="ip" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="192.168.10.37" aria-describedby="ip-err">
+        <p class="err" id="ip-err" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="pfx">Prefix length</label>
+        <div class="pfx"><span>/</span><input id="pfx" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="26" aria-describedby="pfx-err"></div>
+        <p class="err" id="pfx-err" role="alert"></p>
+      </div>
+      <div class="slider"><input id="slider" type="range" min="0" max="32" value="26" aria-label="Prefix length slider"></div>
+    </section>
+
+    <p id="empty" hidden></p>
+
+    <div id="out">
+      <section aria-label="Bit layout">
+        <h2>Bit layout</h2>
+        <p class="rowlabel">Address</p>
+        <div class="bits intro" id="bits-ip"></div>
+        <p class="rowlabel">Subnet mask</p>
+        <div class="bits intro" id="bits-mask"></div>
+        <div class="legend" id="legend"></div>
+      </section>
+
+      <section aria-label="Subnet details">
+        <h2>Subnet details</h2>
+        <div class="items" id="items"></div>
+        <p class="note" id="note"></p>
+      </section>
+
+      <section aria-label="Membership check">
+        <h2>Check an address</h2>
+        <div class="check">
+          <div class="field">
+            <label for="test">IPv4 address to test</label>
+            <input id="test" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="192.168.10.50" aria-describedby="test-err">
+            <p class="err" id="test-err" role="alert"></p>
+          </div>
+          <div class="verdict" aria-live="polite">
+            <span class="badge idle" id="badge"></span>
+            <p class="why" id="why"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
